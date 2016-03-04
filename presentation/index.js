@@ -39,132 +39,145 @@ require("spectacle/lib/themes/default/index.css");
 const images = {
   city: require("../assets/city.jpg"),
   kat: require("../assets/kat.png"),
-  logo: require("../assets/formidable-logo.svg"),
-  markdown: require("../assets/markdown.png")
+  what: require("../assets/what.gif"),
+  vdom: require("../assets/virtualDOM.png")
 };
 
 preloader(images);
 
 const theme = createTheme({
-  primary: "#ff4081"
+  primary: "#59C9E7"
 });
+
+
+const tableStyle = {padding:'10px',width:'100%'};
+import Slide1 from './slide-1';
+
+import Slide2 from './slide-2';
+import Slide3 from './slide-3';
+import Slide4 from './slide-4';
 
 export default class Presentation extends React.Component {
   render() {
     return (
       <Spectacle theme={theme}>
         <Deck transition={["zoom", "slide"]} transitionDuration={500}>
-          <Slide transition={["zoom"]} bgColor="primary">
-            <Heading size={1} fit caps lineHeight={1} textColor="black">
-              Spectacle
-            </Heading>
-            <Heading size={1} fit caps>
-              A ReactJS Presentation Library
-            </Heading>
-            <Heading size={1} fit caps textColor="black">
-              Where You Can Write Your Decks In JSX
-            </Heading>
-            <Link href="https://github.com/FormidableLabs/spectacle">
-              <Text bold caps textColor="tertiary">View on Github</Text>
-            </Link>
-            <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
+        <Slide transition={["zoom"]}  bgColor="primary">
+          <Slide1 />
+        </Slide>
+
+
+
+          <Slide transition={["slide"]} bgColor="primary" notes="You can even put notes on your slide. How awesome is that?">
+           <Slide2 images={images} />
           </Slide>
-          <Slide transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
-            <Image src={images.kat.replace("/", "")} margin="0px auto 40px" height="293px"/>
-            <Heading size={2} caps fit textColor="primary" textFont="primary">
-              Wait what?
-            </Heading>
-          </Slide>
-          <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
-            <CodePane
+
+
+
+
+          <Slide transition={["slide"]} bgColor="primary">            
+          <CodePane
               lang="jsx"
-              source={require("raw!../assets/deck.example")}
+              source={ require("raw!../presentation/component.example") }
               margin="20px auto"
             />
           </Slide>
-          <Slide transition={["slide"]} bgImage={images.city.replace("/", "")} bgDarken={0.75}>
-            <Appear fid="1">
-              <Heading size={1} caps fit textColor="primary">
-                Full Width
-              </Heading>
-            </Appear>
-            <Appear fid="2">
-              <Heading size={1} caps fit textColor="tertiary">
-                Adjustable Darkness
-              </Heading>
-            </Appear>
-            <Appear fid="3">
-              <Heading size={1} caps fit textColor="primary">
-                Background Imagery
-              </Heading>
-            </Appear>
+           <Slide transition={["zoom", "fade"]} bgColor="black">
+            <Slide3 images={images} />
           </Slide>
-          <Slide transition={["zoom", "fade"]} bgColor="primary">
-            <Heading caps fit>Flexible Layouts</Heading>
-            <Layout>
-              <Fill>
-                <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-                  Left
-                </Heading>
-              </Fill>
-              <Fill>
-                <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-                  Right
-                </Heading>
-              </Fill>
-            </Layout>
+
+
+
+          <Slide transition={["slide"]} bgColor="primary">
+            <Heading fit size={2} textColor="black">
+             Logic is in plain JS
+            </Heading>
+             <CodePane
+              lang="jsx"
+              source={ require("raw!../presentation/component.example") }
+              margin="20px auto"
+            /> 
+             <List>
+                <Appear><ListItem>No templating langage to learn - any JS will do.</ListItem></Appear>
+                <Appear><ListItem>Use any JS object you have (no interface).</ListItem></Appear>
+                <Appear><ListItem>No binding, as simple as echo "hello $name" in PHP.</ListItem></Appear>
+            </List>
+             <Appear><div>It is like <b>phtml.</b> </div></Appear>
           </Slide>
+
+
+
           <Slide transition={["slide"]} bgColor="black">
-            <BlockQuote>
-              <Quote>Wonderfully formatted quotes</Quote>
-              <Cite>Ken Wheeler</Cite>
+          <BlockQuote>
+              <Quote size={3}>"Our intellectual powers are rather geared to master static relations."</Quote>
+              <Cite>Dijkstra</Cite>
             </BlockQuote>
           </Slide>
-          <Slide transition={["spin", "zoom"]} bgColor="tertiary">
-            <Heading caps fit size={1} textColor="primary">
-              Inline Markdown
-            </Heading>
-            <Markdown>
-              {`
-![Markdown Logo](${images.markdown.replace("/", "")})
 
-You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
-* Lists too!
-* With ~~strikethrough~~ and _italic_
-* And lets not forget **bold**
-              `}
-            </Markdown>
+
+
+          <Slide transition={["slide"]}>
+
+          <Layout>
+             <table style={tableStyle}>
+             <thead><th>Name</th><th># JellyBeans</th></thead>
+             <tbody>
+             <tr><td>Alice</td><td>12</td></tr>
+             <tr><td>Bob</td><td>10</td></tr>
+             <tr><td>Charlie</td><td>13</td></tr>
+             </tbody>
+             </table>
+            </Layout>
           </Slide>
-          <Slide transition={["slide", "spin"]} bgColor="primary">
-            <Heading caps fit size={1} textColor="tertiary">
-              Smooth
-            </Heading>
-            <Heading caps fit size={1} textColor="secondary">
-              Combinable Transitions
-            </Heading>
+          <Slide transition={["slide"]}>
+            <Heading  size={4} textColor="black">Alice eats 6 jellybeans.</Heading>
           </Slide>
-          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+          <Slide transition={["slide"]}>
+            <Heading  size={4} textColor="black">Charlie gives 2 to Bob.</Heading>
+          </Slide>
+           <Slide transition={["slide"]}>
+            <Heading  size={4} textColor="black">Bobs eats 1 and give 3 to Alice.</Heading>
+          </Slide>
+           <Slide transition={["slide"]}>
+            <Heading  size={4} textColor="black">Alice gives equally her jellybeans to Bob and Charlie.</Heading>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading  size={4} textColor="black">How many jellybeans Bob has?</Heading>
+          </Slide>
+
+
+          <Slide transition={["slide"]}>
+            <Heading fit size={4} textColor="black">React is descriptive</Heading>
             <List>
-              <Appear><ListItem>Inline style based theme system</ListItem></Appear>
-              <Appear><ListItem>Autofit text</ListItem></Appear>
-              <Appear><ListItem>Flexbox layout system</ListItem></Appear>
-              <Appear><ListItem>React-Router navigation</ListItem></Appear>
-              <Appear><ListItem>PDF export</ListItem></Appear>
-              <Appear><ListItem>And...</ListItem></Appear>
+             <Appear><ListItem>render() with same params == same results</ListItem></Appear>
+             <Appear><ListItem>No side effect</ListItem></Appear>
+             <Appear><ListItem>It gives the full DOM, not only the new elements</ListItem></Appear>
             </List>
+            <Appear><div>React re-computes the full DOM when there is a change</div></Appear>
           </Slide>
-          <Slide transition={["slide"]} bgColor="primary">
-            <Heading size={1} caps fit textColor="tertiary">
-              Your presentations are interactive
-            </Heading>
-            <Interactive/>
+
+           <Slide transition={["zoom", "fade"]} bgColor="black">
+            <Slide4 images={images} />
           </Slide>
-          <Slide transition={["spin", "slide"]} bgColor="tertiary">
-            <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
-              Made with love in Seattle by
-            </Heading>
-            <Link href="http://www.formidablelabs.com"><Image width="100%" src={images.logo}/></Link>
+
+          <Slide transition={["slide"]}>
+            <Heading fit size={4} textColor="black">The Virtual DOM</Heading>
           </Slide>
+
+          <Slide transition={["slide"]}>
+           <Image src={images.vdom.replace("/", "")} margin="0px auto 40px" />
+          </Slide>
+
+           <Slide transition={["slide"]}>
+            <Layout>React assumes the DOM is smaller than the amount of JS data. We display less than we know.</Layout>
+          </Slide>
+
+          <Slide>
+          <div>
+          To sum up, React is a descriptive rendering library with pluggable engine. It aims at being simple and fast.
+          </div>
+          </Slide>
+
         </Deck>
       </Spectacle>
     );
