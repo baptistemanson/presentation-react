@@ -1,0 +1,14 @@
+"use strict";
+
+function render(myList) {
+   return React.createElement(
+      "ul",
+      null,
+      "for(myElement in myList) ",
+      React.createElement(
+         "li",
+         null,
+         myElement
+      )
+   );
+}

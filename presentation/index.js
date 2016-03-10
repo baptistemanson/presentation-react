@@ -73,7 +73,14 @@ export default class Presentation extends React.Component {
           </Slide>
 
 
-
+          <Slide>
+             <List>
+             <Appear><ListItem>The JSX language</ListItem></Appear>
+             <Appear><ListItem>Modular via components</ListItem></Appear>   
+             <Appear><ListItem>Architecture of the engine itself</ListItem></Appear>
+            </List>
+          </Slide>
+          
 
           <Slide transition={["slide"]} bgColor="primary">            
           <CodePane
@@ -99,61 +106,34 @@ export default class Presentation extends React.Component {
             /> 
              <List>
                 <Appear><ListItem>No templating langage to learn - any JS will do.</ListItem></Appear>
-                <Appear><ListItem>Use any JS object you have (no interface).</ListItem></Appear>
+                <Appear><ListItem>Use any JS object you have.</ListItem></Appear>
                 <Appear><ListItem>No binding, as simple as echo "hello $name" in PHP.</ListItem></Appear>
             </List>
              <Appear><div>It is like <b>phtml.</b> </div></Appear>
           </Slide>
+          
 
 
-
-          <Slide transition={["slide"]} bgColor="black">
-          <BlockQuote>
-              <Quote size={3}>"Our intellectual powers are rather geared to master static relations."</Quote>
-              <Cite>Dijkstra</Cite>
-            </BlockQuote>
-          </Slide>
-
-
-
-          <Slide transition={["slide"]}>
-
-          <Layout>
-             <table style={tableStyle}>
-             <thead><th>Name</th><th># JellyBeans</th></thead>
-             <tbody>
-             <tr><td>Alice</td><td>12</td></tr>
-             <tr><td>Bob</td><td>10</td></tr>
-             <tr><td>Charlie</td><td>13</td></tr>
-             </tbody>
-             </table>
-            </Layout>
-          </Slide>
-          <Slide transition={["slide"]}>
-            <Heading  size={4} textColor="black">Alice eats 6 jellybeans.</Heading>
-          </Slide>
-          <Slide transition={["slide"]}>
-            <Heading  size={4} textColor="black">Charlie gives 2 to Bob.</Heading>
-          </Slide>
-           <Slide transition={["slide"]}>
-            <Heading  size={4} textColor="black">Bobs eats 1 and give 3 to Alice.</Heading>
-          </Slide>
-           <Slide transition={["slide"]}>
-            <Heading  size={4} textColor="black">Alice gives equally her jellybeans to Bob and Charlie.</Heading>
-          </Slide>
-          <Slide transition={["slide"]}>
-            <Heading  size={4} textColor="black">How many jellybeans Bob has?</Heading>
+          <Slide>
+            <Heading fit size={2} textColor="black">
+             Behind the scene...
+            </Heading>
+            <CodePane
+              lang="jsx"
+              source={ require("raw!../presentation/component-js.example") }
+              margin="20px auto"
+            />
+             <Appear><div>It looks like the <b>DOM Api</b> but... </div></Appear>
           </Slide>
 
 
           <Slide transition={["slide"]}>
             <Heading fit size={4} textColor="black">React is descriptive</Heading>
             <List>
+             <Appear><ListItem>We express the full DOM, not only the HTML to be added/removed. </ListItem></Appear>
              <Appear><ListItem>render() with same params == same results</ListItem></Appear>
-             <Appear><ListItem>No side effect</ListItem></Appear>
-             <Appear><ListItem>It gives the full DOM, not only the new elements</ListItem></Appear>
             </List>
-            <Appear><div>React re-computes the full DOM when there is a change</div></Appear>
+            <Appear><Heading fit textColor="black">Render() re-computes the full "DOM" when there is a change</Heading></Appear>
           </Slide>
 
            <Slide transition={["zoom", "fade"]} bgColor="black">
@@ -164,12 +144,12 @@ export default class Presentation extends React.Component {
             <Heading fit size={4} textColor="black">The Virtual DOM</Heading>
           </Slide>
 
-          <Slide transition={["slide"]}>
-           <Image src={images.vdom.replace("/", "")} margin="0px auto 40px" />
+           <Slide transition={["slide"]}>
+            <Heading fit><a href="https://t.co/tfaSHawOCI">DOM Api is slower than doing them in pure js.</a> </Heading>
           </Slide>
 
-           <Slide transition={["slide"]}>
-            <Layout>React assumes the DOM is smaller than the amount of JS data. We display less than we know.</Layout>
+          <Slide transition={["slide"]}>
+           <Image src={images.vdom.replace("/", "")} margin="0px auto 40px" />
           </Slide>
 
           <Slide>

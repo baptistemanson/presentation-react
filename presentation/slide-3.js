@@ -26,6 +26,7 @@ export default class Slide3 extends React.Component {
             <Heading size={2} caps fit textColor="primary" textFont="primary">
               Wait what?
             </Heading>
-            <Heading size={3} caps fit textColor="primary" textFont="primary"> Js and HTML mixed together?</Heading></div>;
+            <Heading size={3} caps fit textColor="primary" textFont="primary"> Js and HTML mixed together?</Heading>
+            </div>;
    }
 }

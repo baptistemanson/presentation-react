@@ -1,0 +1,79 @@
+	
+So all the "yes" answers were bugging me, so I actually timed this to see if getElementById was slow!
+
+Here are the results (for a page with 10,000 elements on it):
+
+IE8 getElementById: 0.4844 ms
+IE8 id array lookup: 0.0062 ms
+
+Chrome getElementById: 0.0039 ms
+Chrome id array lookup: 0.0006 ms
+
+Firefox 3.5 was comparable to chrome.
+
+Half a millisecond per function call isn't going to get me to use an array ;) But maybe it's worse on IE6, which I don't have installed.
+
+Here's my script:
+
+<html>
+<head>
+<script type="text/javascript">
+    var numEles = 10000;
+    var idx = {};
+
+    function test(){
+    	generateElements();
+    	var t0 = (new Date()).getTime();
+    	var x = selectElementsById();
+    	var t1 = (new Date()).getTime();
+    	var time = t1 - t0;
+    	generateIndex();
+    	var t2 = (new Date()).getTime();
+    	var x = selectElementsWithIndex();
+    	var t3 = (new Date()).getTime();
+    	var idxTime = t3 - t2;
+
+    	var msg = "getElementById time = " + (time / numEles) + " ms (for one call)\n"
+    		+ "Index Time = " + (idxTime/ numEles) + " ms (for one call)";
+    	alert(msg);
+    }
+
+    function generateElements(){
+    	var d = document.getElementById("mainDiv");
+    	var str = [];
+       for(var i=0;i<numEles;i++){
+    	   str.push("<div id='d_" + i + "' >" + i + "</div>");
+    	}
+    	d.innerHTML = str.join('');
+    }
+
+    function selectElementsById(){
+    	var eles = [];
+    	for(var i=0;i<numEles;i++){
+    		var id = ((i * 99) % numEles);
+    		eles.push(document.getElementById("d_" + id));
+    	}
+    	return eles;
+    }
+
+    function generateIndex(){
+    	for(var i=0;i<numEles;i++){
+    		var id = "d_" + i;
+    	   idx[id] = document.getElementById(id);
+    	}
+    }
+
+    function selectElementsWithIndex(){
+    	var eles = [];
+    	for(var i=0;i<numEles;i++){
+    		var id = ((i * 99) % numEles);
+    		eles.push(idx["d_" + id]);
+    	}
+    	return eles;
+    }	
+</script>
+</head>
+<body onload="javascript:test();" >
+<div id="mainDiv" />
+</body>
+</html>
