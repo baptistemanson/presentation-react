@@ -4,11 +4,12 @@ function render(myList) {
    return React.createElement(
       "ul",
       null,
-      "for(myElement in myList) ",
-      React.createElement(
-         "li",
-         null,
-         myElement
-      )
+      myList.map(function (myElement) {
+         return React.createElement(
+            "li",
+            null,
+            myElement
+         );
+      })
    );
 }

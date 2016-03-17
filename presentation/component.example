@@ -1,7 +1,6 @@
 function render(myList)  {
-   return <ul>
-     for(myElement in myList) {
-		<li>{myElement}</li>
-	 }
-   </ul>;
+   return 
+   		<ul>
+		  {myList.map( myElement =>  <li>{myElement}</li> )}
+   		</ul>;
 }

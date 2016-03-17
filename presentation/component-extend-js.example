@@ -1,0 +1,18 @@
+//you can also create class, not only functions
+class Greetings extends React.Component {
+  render() {
+  		return <div>Hello {this.props.name}! </div>;
+  }
+}
+
+class Main extends React.Component {
+
+	render() {
+		return (
+		<div>
+			<Greetings name="World" />
+			<Greetings name="and Universe" />
+		</div>
+		);
+	}
+}

@@ -1,0 +1,6 @@
+function render(name)  {
+   return 
+   		<div>
+		 Hello { name.toUpperCase() }
+   		</div>;
+}

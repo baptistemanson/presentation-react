@@ -1,0 +1,19 @@
+//OBJECTS
+//instead of
+myObject.fieldIWantToChange = "newValue";
+
+//we can do
+myObject = Object.assign({},myObject,{fieldIWantToChange:"newValue"});
+
+
+//instead of
+for(var element in myArray) {}
+
+//ARRAYS
+//we can do
+myArray.map();
+myArray.filter()
+
+
+
+//Strings, integers, float, bool are already immutables in JS.
