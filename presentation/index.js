@@ -34,7 +34,7 @@ import createTheme from "spectacle/lib/themes/default";
 
 
 const images = {
-  city: require("../assets/city.jpg"),
+  kitchen: require("../assets/kitchen.jpg"),
   kat: require("../assets/facepalm.gif"),
   what: require("../assets/what.gif"),
   vdom: require("../assets/virtualDOM.png"),
@@ -60,19 +60,22 @@ export default class Presentation extends React.Component {
     return (
       <Spectacle theme={theme}>
         <Deck transition={["zoom", "slide"]} transitionDuration={500}>
-        <Slide transition={["zoom"]}  bgImage={images.city.replace("/", "")} bgDarken={0.50}>
+        <Slide transition={["zoom"]}  bgImage={images.kitchen.replace("/", "")} bgDarken={0.50}>
           <Heading fit caps lineHeight={1} textColor="primary">
               React
             </Heading>
             <Heading size={1} fit caps>
-              Steam Learn presentation 2016
+              Steam Learn - Inovia 2016
             </Heading>
         </Slide>
 
+        <Slide transition={["zoom", "fade"]} bgColor="primary">
+           <Text textSize="1.5em" margin="20px 0px 0px" bold>Thanks to the @steamlearn team!  You are awesome. </Text> 
+        </Slide>
 
 
           <Slide bgImage={images.logo.replace("/", "")} transition={["slide"]} bgColor="primary" notes="You can even put notes on your slide. How awesome is that?">
-            <Text textSize="1.5em" margin="20px 0px 0px" bold>It is a rendering library.</Text>
+            <Text textSize="1.5em" margin="20px 0px 0px" bold>React is a rendering library.</Text>
             <Text textSize="1.5em" margin="20px 0px 0px" bold>It is only the V of MVC. </Text> 
             <Appear><Text>Not a framework. You still have important decisions to make. </Text></Appear>          
           </Slide>
